@@ -1,5 +1,5 @@
 import {AppBar,Toolbar,IconButton,Typography,Button} from '@material-ui/core';
-import {Wizard} from '../components/Signup/Wizard';
+import {Wizard} from '../app/components/Signup/Wizard';
 import {UserRegistrationContextProvider} from '../app/context/UserRegistrationContext';
 import {ImageUpload} from '../app/uploads/image-upload';
 function HomePage() {
