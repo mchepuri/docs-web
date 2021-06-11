@@ -1,4 +1,4 @@
 node_modules
 .next
-/config/awsConfig.js
+src/app/config/awsConfig.js
 .DS_Store
