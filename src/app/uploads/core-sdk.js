@@ -68,4 +68,33 @@ export const addPhoto = (albumName,albumBucketName,file,uploadDoneHandler) => {
       }
     );
   }
+  // Show the photos that exist in an album.
+export const viewAlbum = (albumBucketName,albumName) => {
   
+  
+  /*AWS.config.region = 'ap-south-1'; // Region
+  AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+      IdentityPoolId: 'us-west-2:d99cc55a-d10a-49ee-b970-ac0a8a157d5c',
+  });*/
+  const s3=new AWS.S3({
+    params: {Bucket: albumBucketName}
+  });
+  s3.config.update(awsS3Config);
+  AWS.config.region = 'ap-south-1'; // Region
+  var albumPhotosKey = encodeURIComponent(albumName) + '/';
+  s3.listObjects({Prefix: albumPhotosKey}, function(err, data) {
+    if (err) {
+      return alert('There was an error viewing your album: ' + err.message);
+    }
+    // 'this' references the AWS.Request instance that represents the response
+    var href = this.request.httpRequest.endpoint.href;
+    var bucketUrl = href + albumBucketName + '/';
+
+    var photos = data.Contents.map(function(photo) {
+      var photoKey = photo.Key;
+      var photoUrl = bucketUrl + encodeURIComponent(photoKey);
+      return photoUrl;
+    });
+    console.log('Album photo URLs',photos)
+  });
+}

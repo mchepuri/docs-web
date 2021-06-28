@@ -1,8 +1,9 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { awsS3Config } from '../config/awsConfig';
-import { addPhoto, createAlbum } from './core-sdk';
+import { addPhoto } from './core-sdk';
 import { Button, LinearProgress, Box, Typography, withStyles } from '@material-ui/core';
-
+import { useUserRegistrationState } from '../context/UserRegistrationContext.js';
+import Link from 'next/link'
 export const ImageUpload = () => {
 
     const fileInput = useRef();
@@ -11,6 +12,8 @@ export const ImageUpload = () => {
     const [uploadedInitiated,setUploadedInitiated] = useState(false);
     const [uploadStatus, setUploadStatus] = useState({});
 
+    const data = useUserRegistrationState();
+    
     let totalUploaded = 0;
     let uploadPercentage = Math.round((100 * uploadedCount) / totalNoOfFiles);
    
@@ -25,7 +28,12 @@ export const ImageUpload = () => {
         event.preventDefault();
         setUploadedInitiated(true);
         setTotalNoOfFiles(fileInput.current.files.length);
-        let objectName = '162281539418';
+        let objectName = data.id;
+        console.log('handleClick objectName',objectName);
+        if(!objectName){
+            objectName = '162281539418';
+        }
+        console.log('handleClick objectName',objectName);
         for (let i = 0; i < fileInput.current.files.length; i++) {
             addPhoto(objectName, awsS3Config.bucketName, fileInput.current.files[i], uploadDoneHandler);
         }
@@ -103,5 +111,8 @@ export const ImageUpload = () => {
             <Button variant="contained" color="primary" onClick={handleClick}>Upload</Button>
             <br />
             <StatusList />
+            <Link href={'/view/Property'} >
+                <a style={{marginTop:50}}>{'View Property'}</a>
+            </Link>
         </form>);
 }
