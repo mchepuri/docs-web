@@ -22,7 +22,7 @@ const getStepContent = (step)=>{
     }
 }
 export const Wizard = () => {
-    const steps=['Meta Info','Location','Upload Photos','Property Data'];
+    const steps=['Meta Info','Location','Upload Photos'];
     const [activeStep,setActiveStep] = useState(0);
     const data = useUserRegistrationState();
     const { setData } = useUserRegistrationDispatch();
@@ -52,7 +52,7 @@ export const Wizard = () => {
         Real Upload 
         </Typography>
         <MobileStepper activeStep={activeStep} steps={steps.length}
-            nextButton={activeStep<steps.length-1?<Button variant="contained" color="primary" onClick={handleNext}>{activeStep<steps.length-3? 'Next':'Submit'}</Button>:''}
+            nextButton={activeStep<steps.length-1?<Button variant="contained" color="primary" onClick={handleNext}>{activeStep<steps.length-2? 'Next':'Submit'}</Button>:''}
             backButton={activeStep>0&&activeStep<steps.length-1?<Button variant="contained" color="primary" onClick={handlePrevious}>Previous</Button> :''}>
 
             {steps.map((step,index)=>{
