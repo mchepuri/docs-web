@@ -1,6 +1,4 @@
 import React, { useRef, useState } from "react";
-import { awsS3Config } from "../config/awsConfig";
-import { addPhoto } from "./core-sdk";
 import {
   Button,
   CircularProgress,
@@ -19,7 +17,9 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { makeStyles } from "@material-ui/core/styles";
 import CheckIcon from "@material-ui/icons/Check";
+import { addPhoto } from "./core-sdk";
 import { useUserRegistrationState } from "../context/UserRegistrationContext.js";
+import { awsS3Config } from "../config/awsConfig";
 
 const useStyles = makeStyles({
   table: {
@@ -51,11 +51,9 @@ export const ImageUpload = () => {
     setUploadedInitiated(true);
     setTotalNoOfFiles(fileInput.current.files.length);
     let objectName = data.id;
-    console.log("handleClick objectName", objectName);
     if (!objectName) {
       objectName = "1624769269666";
     }
-    console.log("handleClick objectName", objectName);
     for (let i = 0; i < fileInput.current.files.length; i++) {
       addPhoto(
         objectName,
@@ -66,10 +64,9 @@ export const ImageUpload = () => {
     }
   };
 
-  const isDone = (currentValue) => currentValue === 'done';
+  const isDone = (currentValue) => currentValue === "done";
 
-  const StatusList = (props) => {
-    //const {uploadStatus1={}} =  props;
+  const StatusList = () => {
     if (!uploadStatus) return null;
     let fileNames = Object.keys(uploadStatus);
     return (
@@ -175,7 +172,7 @@ export const ImageUpload = () => {
       <Grid style={{ margin: "20px 0px" }}>
         <StatusList />
       </Grid>
-      {Object.values(uploadStatus).every(isDone) && uploadedInitiated &&(
+      {Object.values(uploadStatus).every(isDone) && uploadedInitiated && (
         <Button
           style={{ margin: "0 20%" }}
           variant="contained"
