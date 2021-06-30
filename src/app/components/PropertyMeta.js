@@ -31,9 +31,9 @@ export const PropertyMeta = () => {
     setPhotos(viewAlbum("docswebcm", "1624769269666"));
   };
   return (
-    <div style={{ marginTop: 30, marginLeft: 30 }}>
+    <div>
       <form>
-        <div style={{ display: "block", marginTop: 30 }}>
+        <div style={{ display: "block" }}>
           <FormControl>
             <InputLabel
               id="demo-simple-select-label1"
