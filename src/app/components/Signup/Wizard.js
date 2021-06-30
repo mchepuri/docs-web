@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { PersonalData } from "../PersonalData";
-import { Professional } from "../Professional";
 import { MobileStepper, Step, StepLabel, Button } from "@material-ui/core";
 import { _registerProfile } from "../../util/util";
 import {
@@ -11,18 +9,16 @@ import { PropertyMeta } from "../PropertyMeta";
 import { PropertyAddress } from "../PropertyLocation";
 import { ImageUpload } from "../../uploads/image-upload";
 import { _notifyDataUpdate } from "../../util/util";
-import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
 import { Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   rootButton: {
     background: "linear-gradient(45deg, #485cc6 30%, #485cc6 90%)",
-    
   },
-  labelButton:{
-    color: "white !important"
-  }
+  labelButton: {
+    color: "white !important",
+  },
 }));
 
 const getStepContent = (step) => {
@@ -63,34 +59,70 @@ export const Wizard = () => {
   };
   return (
     <div>
-      <Typography variant="h5" color="#161616" style={{ marginTop: 30 }}>
+      <Typography
+        variant="h5"
+        color="#161616"
+        style={{
+          margin: "30px 70px 30px 30px",
+          display: "flex",
+          alignItems: "flex-end",
+          transition: "ease-in 0.5s",
+        }}
+        color="textPrimary"
+      >
         <img
           src="/house_icon.svg"
-          style={{ height: 50, width: 100, verticalAlign: "-50%" }}
+          style={{
+            height: 50,
+            width: 100,
+            verticalAlign: "-50%",
+            transition: "ease-in 0.5s",
+            marginLeft: 10,
+          }}
         />
         Real Upload
       </Typography>
+
       <MobileStepper
         activeStep={activeStep}
         steps={steps.length}
         nextButton={
-          activeStep < steps.length - 1 && (
-            <Button variant="contained" color="primary" classes={{root:classes.rootButton,label:classes.labelButton}} onClick={handleNext}>
-              {activeStep < steps.length - 2 ? "Next" : "Submit"}
-            </Button>
+          activeStep < steps.length - 1 ? (
+            <div style={{ width: 80 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                classes={{
+                  root: classes.rootButton,
+                  label: classes.labelButton,
+                }}
+                onClick={handleNext}
+              >
+                {activeStep < steps.length - 2 ? "Next" : "Submit"}
+              </Button>
+            </div>
+          ) : (
+            <div style={{ width: 80, height: 36 }}></div>
           )
         }
         backButton={
-          activeStep > 0 &&
-          activeStep < steps.length - 1 && (
-            <Button
-              variant="contained"
-              classes={{root:classes.rootButton,label:classes.labelButton}}
-              color="primary"
-              onClick={handlePrevious}
-            >
-              Previous
-            </Button>
+          activeStep > 0 && activeStep < steps.length - 1 ? (
+            <div style={{ width: 80 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handlePrevious}
+                classes={{
+                  root: classes.rootButton,
+                  label: classes.labelButton,
+                }}
+                F
+              >
+                Previous
+              </Button>
+            </div>
+          ) : (
+            <div style={{ width: 80, height: 36 }}></div>
           )
         }
       >
