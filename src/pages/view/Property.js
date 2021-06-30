@@ -68,9 +68,11 @@ function Property() {
       }
     : data;
   const prepareAddress = (address) =>
-    address ? Object.values(address)
-      .filter((a) => a)
-      .join(", ") : 'NIA';
+    address
+      ? Object.values(address)
+          .filter((a) => a)
+          .join(", ")
+      : "NIA";
   const prepareIconTiles = (title, value, icon) => {
     return (
       <Grid container spacing={2}>
@@ -102,7 +104,7 @@ function Property() {
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
 
-  const isDataAvailable = (data) => data ? data : 'NIA';
+  const isDataAvailable = (data) => (data ? data : "NIA");
 
   return (
     <div>
@@ -122,7 +124,9 @@ function Property() {
           <div className="solid_icon_green" />
           <span className="status_label">For Sale</span>
         </div>
-        <div className="list_price">{isDataAvailable(formatter.format(property?.lprice))}</div>
+        <div className="list_price">
+          {isDataAvailable(formatter.format(property?.lprice))}
+        </div>
         <GridList cols={5} cellHeight="auto">
           <GridListTile key={"beds"}>
             <div>
@@ -179,33 +183,45 @@ function Property() {
             )}
           </GridListTile>
         </GridList>
-        <GridList className={classes.featuresTile}>
-          <GridListTile
-            className={classes.featuresTile}
-            key="Subheader"
-            cols={2}
-            style={{ height: "auto" }}
-          >
-            <ListSubheader component="div">Features</ListSubheader>
-          </GridListTile>
-        </GridList>
-        {property?.features?.length > 0 && <GridList cols={2} cellHeight="auto">
-          {property?.features.includes("pool") && (
-            <GridListTile>
-              {prepareIconTiles("", "Pool", <PoolOutlinedIcon />)}
-            </GridListTile>
-          )}
-          <GridListTile>
-            {prepareIconTiles(
-              "",
-              "Basement",
-              <StoreMallDirectoryOutlinedIcon />
-            )}
-          </GridListTile>
-          <GridListTile>
-            {prepareIconTiles("", "Attached Garage", <DriveEtaOutlinedIcon />)}
-          </GridListTile>
-        </GridList>}
+        {property?.features?.length > 0 && (
+          <>
+            <GridList className={classes.featuresTile}>
+              <GridListTile
+                className={classes.featuresTile}
+                key="Subheader"
+                cols={2}
+                style={{ height: "auto" }}
+              >
+                <ListSubheader component="div">Features</ListSubheader>
+              </GridListTile>
+            </GridList>
+            <GridList cols={2} cellHeight="auto">
+              {property?.features.includes("pool") && (
+                <GridListTile>
+                  {prepareIconTiles("", "Pool", <PoolOutlinedIcon />)}
+                </GridListTile>
+              )}
+              {property?.features.includes("basement") && (
+                <GridListTile>
+                  {prepareIconTiles(
+                    "",
+                    "Basement",
+                    <StoreMallDirectoryOutlinedIcon />
+                  )}
+                </GridListTile>
+              )}
+              {property?.features.includes("attached_garage") && (
+                <GridListTile>
+                  {prepareIconTiles(
+                    "",
+                    "Attached Garage",
+                    <DriveEtaOutlinedIcon />
+                  )}
+                </GridListTile>
+              )}
+            </GridList>
+          </>
+        )}
       </div>
       <style jsx>{`
         .list_price {
