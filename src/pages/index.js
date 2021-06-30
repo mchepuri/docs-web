@@ -1,11 +1,11 @@
-
-import {Wizard} from '../app/components/Signup/Wizard';
+import { Wizard } from "../app/components/Signup/Wizard";
 
 function HomePage() {
-    return (
+  return (
     <div>
-      <Wizard/>
-    </div>);
-  }
-  
-  export default HomePage;
+      <Wizard />
+    </div>
+  );
+}
+
+export default HomePage;

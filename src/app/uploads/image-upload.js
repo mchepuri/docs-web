@@ -78,7 +78,9 @@ export const ImageUpload = () => {
               {fileNames.map((fileName) => (
                 <TableRow key={fileName}>
                   <TableCell style={{ width: "40%", padding: "20px" }}>
-                    {fileName.length > 20 ? fileName.slice(0, 20) + "..." : fileName}
+                    {fileName.length > 20
+                      ? fileName.slice(0, 20) + "..."
+                      : fileName}
                   </TableCell>
                   <TableCell>
                     {uploadStatus[fileName] === "done" ? (
@@ -138,7 +140,10 @@ export const ImageUpload = () => {
         </Typography>
         <Box className="mb25" display="flex" alignItems="center">
           <Box width="100%" mr={1}>
-            <BorderLinearProgress variant="determinate" value={uploadPercentage} />
+            <BorderLinearProgress
+              variant="determinate"
+              value={uploadPercentage}
+            />
           </Box>
           <Box minWidth={35}>
             <Typography
