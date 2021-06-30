@@ -4,7 +4,7 @@ export const notifyDataUpdate = () => {
     const { setData } = useUserRegistrationDispatch();
     return (event) => {
         const data={};
-        data[event.target.id] = event.target.value;
+        data[event.nativeEvent.target.id] = event.target.value;
         setData(data)
     }
 }
