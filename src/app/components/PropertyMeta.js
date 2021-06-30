@@ -34,7 +34,7 @@ export const PropertyMeta = () => {
     <div>
       <form>
         <div style={{ display: "block" }}>
-          <FormControl>
+          <FormControl style={{ width: "43%", textAlign: "center" }}>
             <InputLabel
               id="demo-simple-select-label1"
               style={{ display: "inline" }}
@@ -53,7 +53,9 @@ export const PropertyMeta = () => {
               <MenuItem value={3}>3</MenuItem>
             </Select>
           </FormControl>
-          <FormControl style={{ marginLeft: 90 }}>
+          <FormControl
+            style={{ marginLeft: 10, width: "43%", textAlign: "center" }}
+          >
             <InputLabel
               id="demo-simple-select-label2"
               style={{ display: "inline" }}
@@ -94,26 +96,44 @@ export const PropertyMeta = () => {
             </Select>
           </FormControl>
         </div>
-        <FormControl style={{ display: "block" }}>
+        <FormControl style={{ display: "block", width: "100%" }}>
           <InputLabel htmlFor="area">Sqft</InputLabel>
-          <Input id="area" onBlur={notifyDataUpdate()} />
+          <Input
+            id="area"
+            onBlur={notifyDataUpdate()}
+            style={{ width: "90%" }}
+          />
         </FormControl>
 
-        <FormControl style={{ display: "block" }}>
+        <FormControl style={{ display: "block", width: "100%" }}>
           <InputLabel htmlFor="lotsize">Lot Size</InputLabel>
-          <Input id="lotsize" onBlur={notifyDataUpdate()} />
+          <Input
+            id="lotsize"
+            onBlur={notifyDataUpdate()}
+            style={{ width: "90%" }}
+          />
         </FormControl>
 
-        <FormControl style={{ display: "block" }}>
+        <FormControl style={{ display: "block", width: "100%" }}>
           <InputLabel htmlFor="lprice">List Price</InputLabel>
-          <Input id="lprice" onBlur={notifyDataUpdate()} />
+          <Input
+            id="lprice"
+            onBlur={notifyDataUpdate()}
+            style={{ width: "90%" }}
+          />
         </FormControl>
 
-        <FormControl style={{ display: "block" }}>
+        <FormControl style={{ display: "block", width: "100%" }}>
           <InputLabel htmlFor="ybuilt">Year Built</InputLabel>
-          <Input id="ybuilt" onBlur={notifyDataUpdate()} />
+          <Input
+            id="ybuilt"
+            onBlur={notifyDataUpdate()}
+            style={{ width: "90%" }}
+          />
         </FormControl>
-        <FormControl style={{ display: "block", marginTop: "10px" }}>
+        <FormControl
+          style={{ display: "block", marginTop: "10px", width: "100%" }}
+        >
           <InputLabel id="demo-simple-select-label3">Property Type</InputLabel>
           <Select
             labelId="demo-simple-select-label3"
@@ -121,6 +141,7 @@ export const PropertyMeta = () => {
             value={propType}
             onChange={(event) => setPropType(event.target.value)}
             onBlur={notifyDataUpdate()}
+            style={{ width: "90%" }}
           >
             <MenuItem id="1" value="Any">
               Any
@@ -139,7 +160,9 @@ export const PropertyMeta = () => {
             </MenuItem>
           </Select>
         </FormControl>
-        <FormControl style={{ display: "block", marginTop: "10px" }}>
+        <FormControl
+          style={{ display: "block", marginTop: "10px", width: "100%" }}
+        >
           <InputLabel id="demo-simple-select-label4">
             Garage Capacity
           </InputLabel>
@@ -149,6 +172,7 @@ export const PropertyMeta = () => {
             value={garageCapacity}
             onChange={(event) => setGarageCapacity(event.target.value)}
             onBlur={notifyDataUpdate()}
+            style={{ width: "90%" }}
           >
             <MenuItem id="0" value={0}>
               0+

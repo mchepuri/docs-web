@@ -62,29 +62,36 @@ export const Wizard = () => {
         activeStep={activeStep}
         steps={steps.length}
         nextButton={
-          activeStep < steps.length - 1 && (
-            <Button variant="contained" color="primary" onClick={handleNext}>
-              {activeStep < steps.length - 2 ? "Next" : "Submit"}
-            </Button>
+          activeStep < steps.length - 1 ? (
+            <div style={{ width: 80 }}>
+              <Button variant="contained" color="primary" onClick={handleNext}>
+                {activeStep < steps.length - 2 ? "Next" : "Submit"}
+              </Button>
+            </div>
+          ) : (
+            <div style={{ width: 80, height: 36 }}></div>
           )
         }
         backButton={
-          activeStep > 0 &&
-          activeStep < steps.length - 1 && (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handlePrevious}
-            >
-              Previous
-            </Button>
+          activeStep > 0 && activeStep < steps.length - 1 ? (
+            <div style={{ width: 80 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handlePrevious}
+              >
+                Previous
+              </Button>
+            </div>
+          ) : (
+            <div style={{ width: 80, height: 36 }}></div>
           )
         }
       >
         {steps.map((step, index) => {
           return (
             <Step key={"step" + index}>
-              <StepLabel>{step}</StepLabel>
+              <StepLabel style={{ width: 85, padding: 10 }}>{step}</StepLabel>
             </Step>
           );
         })}
