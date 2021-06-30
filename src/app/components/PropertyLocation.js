@@ -30,7 +30,7 @@ export const PropertyAddress = () => {
   console.log("context ", data);
 
   return (
-    <div>
+    <div style={{ width: "90%" }}>
       <AddressInput
         onAdd={handleAddAddress}
         onChange={handleChangeAddress}
