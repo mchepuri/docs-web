@@ -1,6 +1,4 @@
 import { useState } from "react";
-import { PersonalData } from "../PersonalData";
-import { Professional } from "../Professional";
 import { MobileStepper, Step, StepLabel, Button } from "@material-ui/core";
 import { _registerProfile } from "../../util/util";
 import {
@@ -11,9 +9,7 @@ import { PropertyMeta } from "../PropertyMeta";
 import { PropertyAddress } from "../PropertyLocation";
 import { ImageUpload } from "../../uploads/image-upload";
 import { _notifyDataUpdate } from "../../util/util";
-import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
 import { Typography } from "@material-ui/core";
-import { TramOutlined } from "@material-ui/icons";
 
 const getStepContent = (step) => {
   switch (step) {
