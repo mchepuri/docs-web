@@ -12,16 +12,21 @@ const theme = createMuiTheme({
   },
   overrides: {
     MuiButton: {
-      root: {
+      label: {
+        color: "#191919",
+      },
+      stepperButton: {
         background: "linear-gradient(45deg, #485cc6 30%, #485cc6 90%)",
       },
-      label: {
-        color: "white",
-      }
     },
     MuiMobileStepper: {
-        dotActive:{
-            background: "linear-gradient(45deg, #485cc6 30%, #485cc6 90%)",
+      dotActive: {
+        background: "linear-gradient(45deg, #485cc6 30%, #485cc6 90%)",
+      },
+    },
+    MuiCircularProgress: {
+        svg: {
+            color: "#485cc5",
         }
     }
   },
