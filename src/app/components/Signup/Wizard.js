@@ -23,7 +23,6 @@ const getStepContent = (step) => {
 };
 export const Wizard = () => {
   const steps = ["Meta Info", "Location", "Upload Photos"];
-  const [home, setHome] = useState(true);
   const [activeStep, setActiveStep] = useState(0);
   const data = useUserRegistrationState();
   const { setData } = useUserRegistrationDispatch();
@@ -54,7 +53,6 @@ export const Wizard = () => {
         color="primary"
         style={{
           margin: "30px 70px 30px 30px",
-          marginTop: `${home ? "200px" : "30px"}`,
           display: "flex",
           alignItems: "flex-end",
           transition: "ease-in 0.5s",
@@ -73,65 +71,48 @@ export const Wizard = () => {
         />
         Real Upload
       </Typography>
-      {home ? (
-        <div style={{ textAlign: "center" }}>
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={() => setHome(false)}
-          >
-            Ready
-          </Button>
-        </div>
-      ) : (
-        <>
-          <MobileStepper
-            activeStep={activeStep}
-            steps={steps.length}
-            nextButton={
-              activeStep < steps.length - 1 ? (
-                <div style={{ width: 80 }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handleNext}
-                  >
-                    {activeStep < steps.length - 2 ? "Next" : "Submit"}
-                  </Button>
-                </div>
-              ) : (
-                <div style={{ width: 80, height: 36 }}></div>
-              )
-            }
-            backButton={
-              activeStep > 0 && activeStep < steps.length - 1 ? (
-                <div style={{ width: 80 }}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={handlePrevious}
-                  >
-                    Previous
-                  </Button>
-                </div>
-              ) : (
-                <div style={{ width: 80, height: 36 }}></div>
-              )
-            }
-          >
-            {steps.map((step, index) => {
-              return (
-                <Step key={"step" + index}>
-                  <StepLabel>{step}</StepLabel>
-                </Step>
-              );
-            })}
-          </MobileStepper>
-          <div style={{ margin: 20, marginTop: 30 }}>
-            {getStepContent(activeStep)}
-          </div>
-        </>
-      )}
+
+      <MobileStepper
+        activeStep={activeStep}
+        steps={steps.length}
+        nextButton={
+          activeStep < steps.length - 1 ? (
+            <div style={{ width: 80 }}>
+              <Button variant="contained" color="primary" onClick={handleNext}>
+                {activeStep < steps.length - 2 ? "Next" : "Submit"}
+              </Button>
+            </div>
+          ) : (
+            <div style={{ width: 80, height: 36 }}></div>
+          )
+        }
+        backButton={
+          activeStep > 0 && activeStep < steps.length - 1 ? (
+            <div style={{ width: 80 }}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handlePrevious}
+              >
+                Previous
+              </Button>
+            </div>
+          ) : (
+            <div style={{ width: 80, height: 36 }}></div>
+          )
+        }
+      >
+        {steps.map((step, index) => {
+          return (
+            <Step key={"step" + index}>
+              <StepLabel>{step}</StepLabel>
+            </Step>
+          );
+        })}
+      </MobileStepper>
+      <div style={{ margin: 20, marginTop: 30 }}>
+        {getStepContent(activeStep)}
+      </div>
     </div>
   );
 };
