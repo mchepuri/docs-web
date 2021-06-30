@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import Link from 'next/link';
 import {
   Button,
   CircularProgress,
@@ -178,6 +179,7 @@ export const ImageUpload = () => {
         <StatusList />
       </Grid>
       {Object.values(uploadStatus).every(isDone) && uploadedInitiated && (
+        <Link href={'/view/Property'} >
         <Button
           style={{ margin: "0 20%" }}
           variant="contained"
@@ -186,6 +188,7 @@ export const ImageUpload = () => {
         >
           View Property
         </Button>
+        </Link>         
       )}
     </form>
   );
