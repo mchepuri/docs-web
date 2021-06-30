@@ -51,7 +51,16 @@ export const Wizard = () => {
   };
   return (
     <div>
-      <Typography variant="h5" color="primary" style={{ marginTop: 30 }}>
+      <Typography
+        variant="h5"
+        color="primary"
+        style={{
+          margin: "30px 70px 30px 30px",
+          display: "flex",
+          alignItems: "flex-end",
+        }}
+        color="textPrimary"
+      >
         <img
           src="/house_icon.svg"
           style={{ height: 50, width: 100, verticalAlign: "-50%" }}
