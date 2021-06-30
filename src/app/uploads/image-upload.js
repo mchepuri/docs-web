@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import Link from 'next/link';
+import Link from "next/link";
 import {
   Button,
   CircularProgress,
@@ -172,6 +172,7 @@ export const ImageUpload = () => {
         startIcon={<CloudUploadIcon />}
         onClick={handleClick}
         style={{ margin: "0 0 0 16px" }}
+        disabled={!Object.keys(uploadStatus).length}
       >
         Upload
       </Button>
@@ -179,16 +180,16 @@ export const ImageUpload = () => {
         <StatusList />
       </Grid>
       {Object.values(uploadStatus).every(isDone) && uploadedInitiated && (
-        <Link href={'/view/Property'} >
-        <Button
-          style={{ margin: "0 20%" }}
-          variant="contained"
-          color="primary"
-          href={"/view/Property"}
-        >
-          View Property
-        </Button>
-        </Link>         
+        <Link href={"/view/Property"}>
+          <Button
+            style={{ margin: "0 20%" }}
+            variant="contained"
+            color="primary"
+            href={"/view/Property"}
+          >
+            View Property
+          </Button>
+        </Link>
       )}
     </form>
   );
