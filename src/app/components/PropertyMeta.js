@@ -43,7 +43,7 @@ export const PropertyMeta = () => {
             </InputLabel>
             <Select
               labelId="demo-simple-select-label1"
-              id="demo-simple-select1"
+              id="beds"
               value={beds}
               onChange={(event) => setBeds(event.target.value)}
               onBlur={notifyDataUpdate()}
@@ -64,7 +64,7 @@ export const PropertyMeta = () => {
             </InputLabel>
             <Select
               labelId="demo-simple-select-label2"
-              id="demo-simple-select2"
+              id="bath"
               value={baths}
               onChange={(event) => setBaths(event.target.value)}
               onBlur={notifyDataUpdate()}
@@ -137,7 +137,7 @@ export const PropertyMeta = () => {
           <InputLabel id="demo-simple-select-label3">Property Type</InputLabel>
           <Select
             labelId="demo-simple-select-label3"
-            id="demo-simple-select3"
+            id="type"
             value={propType}
             onChange={(event) => setPropType(event.target.value)}
             onBlur={notifyDataUpdate()}
@@ -168,7 +168,7 @@ export const PropertyMeta = () => {
           </InputLabel>
           <Select
             labelId="demo-simple-select-label4"
-            id="demo-simple-select4"
+            id="garage"
             value={garageCapacity}
             onChange={(event) => setGarageCapacity(event.target.value)}
             onBlur={notifyDataUpdate()}

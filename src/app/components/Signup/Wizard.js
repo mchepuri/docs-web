@@ -10,6 +10,16 @@ import { PropertyAddress } from "../PropertyLocation";
 import { ImageUpload } from "../../uploads/image-upload";
 import { _notifyDataUpdate } from "../../util/util";
 import { Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(() => ({
+  rootButton: {
+    background: "linear-gradient(45deg, #485cc6 30%, #485cc6 90%)",
+  },
+  labelButton: {
+    color: "white !important",
+  },
+}));
 
 const getStepContent = (step) => {
   switch (step) {
@@ -22,6 +32,7 @@ const getStepContent = (step) => {
   }
 };
 export const Wizard = () => {
+  const classes = useStyles();
   const steps = ["Meta Info", "Location", "Upload Photos"];
   const [activeStep, setActiveStep] = useState(0);
   const data = useUserRegistrationState();
@@ -50,7 +61,7 @@ export const Wizard = () => {
     <div>
       <Typography
         variant="h5"
-        color="primary"
+        color="#161616"
         style={{
           margin: "30px 70px 30px 30px",
           display: "flex",
@@ -78,7 +89,15 @@ export const Wizard = () => {
         nextButton={
           activeStep < steps.length - 1 ? (
             <div style={{ width: 80 }}>
-              <Button variant="contained" color="primary" onClick={handleNext}>
+              <Button
+                variant="contained"
+                color="primary"
+                classes={{
+                  root: classes.rootButton,
+                  label: classes.labelButton,
+                }}
+                onClick={handleNext}
+              >
                 {activeStep < steps.length - 2 ? "Next" : "Submit"}
               </Button>
             </div>
@@ -93,6 +112,11 @@ export const Wizard = () => {
                 variant="contained"
                 color="primary"
                 onClick={handlePrevious}
+                classes={{
+                  root: classes.rootButton,
+                  label: classes.labelButton,
+                }}
+                F
               >
                 Previous
               </Button>
