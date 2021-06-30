@@ -27,11 +27,14 @@ const useStyles = makeStyles({
     minWidth: 650,
   },
   rootButton: {
-    background: "linear-gradient(45deg, #485cc6 30%, #485cc6 90%)"
+    background: "linear-gradient(45deg, #485cc6 30%, #485cc6 90%)",
   },
-  labelButton:{
-    color: "white !important"
-  }
+  labelButton: {
+    color: "white !important",
+  },
+  disabled: {
+    background: "grey !important",
+  },
 });
 
 export const ImageUpload = () => {
@@ -92,7 +95,7 @@ export const ImageUpload = () => {
                     {uploadStatus[fileName] === "done" ? (
                       <CheckIcon style={{ color: "green" }} />
                     ) : uploadedInitiated ? (
-                      <CircularProgress size={25}/>
+                      <CircularProgress size={25} />
                     ) : (
                       "Ready"
                     )}
@@ -177,7 +180,11 @@ export const ImageUpload = () => {
         variant="contained"
         startIcon={<CloudUploadIcon />}
         onClick={handleClick}
-        classes={{root:classes.rootButton,label:classes.labelButton}}
+        classes={{
+          root: classes.rootButton,
+          label: classes.labelButton,
+          disabled: classes.disabled,
+        }}
         style={{ margin: "0 0 0 16px" }}
         disabled={!Object.keys(uploadStatus).length}
       >
