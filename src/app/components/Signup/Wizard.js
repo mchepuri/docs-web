@@ -63,7 +63,13 @@ export const Wizard = () => {
       >
         <img
           src="/house_icon.svg"
-          style={{ height: 50, width: 100, verticalAlign: "-50%" }}
+          style={{
+            height: 50,
+            width: 100,
+            verticalAlign: "-50%",
+            transition: "ease-in 0.5s",
+            marginLeft: 10,
+          }}
         />
         Real Upload
       </Typography>
