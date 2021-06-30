@@ -45,29 +45,32 @@ function Property() {
     "https://docswebcm.s3.ap-south-1.amazonaws.com/162281539418/kitchen-5.jpg",
     "https://docswebcm.s3.ap-south-1.amazonaws.com/162281539418/level-0.jpg",
   ];
-  const property = {
-    address: {
-      addressLine1: "27475 PALMWOOD AVE",
-      addressLine2: "",
-      city: "HAYWARD",
-      country: "American Samoa",
-      region: "CALIFORNIA",
-      zip: "94545",
-    },
-    area: "3434",
-    id: "1624546204802",
-    lotsize: "200",
-    lprice: "565675",
-    ybuilt: "2300",
-    beds: 3,
-    bath: 2,
-    type: "Condo",
-    features: ["pool", "garage", "basement"],
-  };
+  const property = false
+    ? {
+        address: {
+          addressLine1: "27475 PALMWOOD AVE",
+          addressLine2: "",
+          city: "HAYWARD",
+          country: "American Samoa",
+          region: "CALIFORNIA",
+          zip: "94545",
+        },
+        area: "3434",
+        id: "1624546204802",
+        lotsize: "200",
+        lprice: "565675",
+        ybuilt: "2300",
+        beds: 3,
+        bath: 2,
+        garage: "1+",
+        type: "Condo",
+        features: ["pool", "garage", "basement"],
+      }
+    : data;
   const prepareAddress = (address) =>
-    Object.values(address)
+    address ? Object.values(address)
       .filter((a) => a)
-      .join(", ");
+      .join(", ") : 'NIA';
   const prepareIconTiles = (title, value, icon) => {
     return (
       <Grid container spacing={2}>
@@ -99,6 +102,8 @@ function Property() {
     //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
   });
 
+  const isDataAvailable = (data) => data ? data : 'NIA';
+
   return (
     <div>
       <Carousel
@@ -117,28 +122,28 @@ function Property() {
           <div className="solid_icon_green" />
           <span className="status_label">For Sale</span>
         </div>
-        <div className="list_price">{formatter.format(property["lprice"])}</div>
+        <div className="list_price">{isDataAvailable(formatter.format(property?.lprice))}</div>
         <GridList cols={5} cellHeight="auto">
           <GridListTile key={"beds"}>
             <div>
-              <strong>{property["beds"]}</strong> bed
+              <strong>{isDataAvailable(property?.beds)}</strong> bed
             </div>
           </GridListTile>
           <GridListTile key={"beds"}>
             <div>
-              <strong>{property["bath"]}</strong> bath
+              <strong>{isDataAvailable(property?.bath)}</strong> bath
             </div>
           </GridListTile>
           <GridListTile key={"beds"}>
             <div>
-              <strong>{property["area"]}</strong> sqft
+              <strong>{isDataAvailable(property?.area)}</strong> sqft
             </div>
           </GridListTile>
         </GridList>
         <GridList className={classes.address} cols={1} cellHeight="auto">
           <GridListTile>
             <Typography variant="caption" gutterBottom>
-              {prepareAddress(property.address)}
+              {prepareAddress(property?.address)}
             </Typography>
           </GridListTile>
         </GridList>
@@ -146,14 +151,14 @@ function Property() {
           <GridListTile>
             {prepareIconTiles(
               "Property Type",
-              property["type"],
+              isDataAvailable(property?.type),
               <HomeOutlinedIcon />
             )}
           </GridListTile>
           <GridListTile>
             {prepareIconTiles(
               "Year Built",
-              property["ybuilt"],
+              isDataAvailable(property?.ybuilt),
               <GavelOutlinedIcon />
             )}
           </GridListTile>
@@ -162,24 +167,29 @@ function Property() {
           <GridListTile>
             {prepareIconTiles(
               "Lot Size",
-              property["lotsize"],
+              isDataAvailable(property?.lotsize),
               <DomainOutlinedIcon />
             )}
           </GridListTile>
           <GridListTile>
             {prepareIconTiles(
               "Garage",
-              "1 car",
+              `${isDataAvailable(property?.garage)} Car`,
               <EmojiTransportationOutlinedIcon />
             )}
           </GridListTile>
         </GridList>
         <GridList className={classes.featuresTile}>
-          <GridListTile className={classes.featuresTile} key="Subheader" cols={2} style={{ height: "auto" }}>
+          <GridListTile
+            className={classes.featuresTile}
+            key="Subheader"
+            cols={2}
+            style={{ height: "auto" }}
+          >
             <ListSubheader component="div">Features</ListSubheader>
           </GridListTile>
         </GridList>
-        <GridList cols={2} cellHeight="auto">
+        {property?.features?.length > 0 && <GridList cols={2} cellHeight="auto">
           {property?.features.includes("pool") && (
             <GridListTile>
               {prepareIconTiles("", "Pool", <PoolOutlinedIcon />)}
@@ -195,7 +205,7 @@ function Property() {
           <GridListTile>
             {prepareIconTiles("", "Attached Garage", <DriveEtaOutlinedIcon />)}
           </GridListTile>
-        </GridList>
+        </GridList>}
       </div>
       <style jsx>{`
         .list_price {
